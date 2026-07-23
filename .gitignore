@@ -1,0 +1,16 @@
+# .NET
+bin/
+obj/
+*.user
+
+# Node
+node_modules/
+dist/
+.angular/
+coverage/
+npm-debug.log*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
