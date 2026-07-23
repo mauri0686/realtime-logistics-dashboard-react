@@ -5,7 +5,7 @@ A full‑stack, real‑time operations dashboard: a **.NET 8** backend streams l
 smooth by rendering only what's visible.
 
 > Sister project: the same backend with an **Angular 18** front‑end →
-> [`realtime-logistics-dashboard-angular`](../../../realtime-logistics-dashboard-angular)
+> [`realtime-logistics-dashboard-angular`](https://github.com/mauri0686/realtime-logistics-dashboard-angular)
 
 ![Dashboard](docs/screenshot-dashboard.png)
 
