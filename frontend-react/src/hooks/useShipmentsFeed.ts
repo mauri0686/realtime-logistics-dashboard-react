@@ -5,6 +5,8 @@ import {
   type HubConnection,
 } from '@microsoft/signalr';
 import { API_BASE_URL, api, tokenStorage } from '../api/client';
+import { DemoShipmentGenerator } from '../demo/demoData';
+import { isDemoMode } from '../demo/demoMode';
 import type { Shipment } from '../types/shipment';
 
 export type StreamStatus = 'idle' | 'connecting' | 'live' | 'reconnecting' | 'error';
@@ -28,6 +30,8 @@ export interface FeedState {
 class ShipmentsFeedStore {
   private byId = new Map<string, Shipment>();
   private hub: HubConnection | null = null;
+  private demo: DemoShipmentGenerator | null = null;
+  private demoTimer?: ReturnType<typeof setInterval>;
   private listeners = new Set<() => void>();
   private refCount = 0;
   private connectPromise: Promise<void> | null = null;
@@ -56,6 +60,20 @@ class ShipmentsFeedStore {
 
   private async connect(): Promise<void> {
     this.setState({ status: 'connecting' });
+
+    // Demo mode (GitHub Pages / ?demo=1): identical UI, but the simulation that normally lives
+    // in the .NET backend runs right here in the browser — zero infrastructure needed.
+    if (isDemoMode()) {
+      this.demo = new DemoShipmentGenerator(5000);
+      this.replaceAll(this.demo.snapshot());
+      this.demoTimer = setInterval(() => {
+        if (this.demo) this.applyUpdates(this.demo.tick());
+      }, 1000);
+      this.startRateMeter();
+      this.setState({ status: 'live' });
+      return;
+    }
+
     try {
       const { data } = await api.get<Shipment[]>('/api/shipments');
       this.replaceAll(data);
@@ -109,6 +127,9 @@ class ShipmentsFeedStore {
     this.connectPromise = null;
     if (this.rateTimer) clearInterval(this.rateTimer);
     this.rateTimer = undefined;
+    if (this.demoTimer) clearInterval(this.demoTimer);
+    this.demoTimer = undefined;
+    this.demo = null;
     if (this.hub) {
       const hub = this.hub;
       this.hub = null; // signal deliberate close to onclose

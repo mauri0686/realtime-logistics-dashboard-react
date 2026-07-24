@@ -10,6 +10,9 @@ smooth by rendering only what's visible.
 > [`realtime-logistics-dashboard-angular`](https://github.com/mauri0686/realtime-logistics-dashboard-angular)
 
 
+
+> 🚀 **[Live demo → mauri0686.github.io/realtime-logistics-dashboard-react](https://mauri0686.github.io/realtime-logistics-dashboard-react/)** — sign in with any username/password. The demo runs the shipment simulation in your browser; clone the repo to run the real .NET + SignalR backend.
+
 > 🧭 **New to the project?** Read the [plain-language guide](docs/CLIENT-GUIDE.md) — no engineering background needed.
 
 ![Dashboard](docs/screenshot-dashboard.png)
