@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { isDemoMode } from '../demo/demoMode';
 
 interface LoginForm {
   username: string;
@@ -22,7 +23,13 @@ export function LoginPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginForm>({ defaultValues: { username: '', password: '' } });
+  } = useForm<LoginForm>({
+    // In demo mode the credentials come pre-filled: a recruiter/client lands one click away
+    // from the dashboard, while the full auth flow still runs.
+    defaultValues: isDemoMode()
+      ? { username: 'ops-lead', password: 'demo123' }
+      : { username: '', password: '' },
+  });
 
   const onSubmit = async ({ username, password }: LoginForm) => {
     setError(null);

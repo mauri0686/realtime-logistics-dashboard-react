@@ -370,3 +370,33 @@ body {
 .badge.ok     { color: var(--ok);     border-color: rgba(52, 211, 153, 0.35);  background: rgba(52, 211, 153, 0.08); }
 .badge.warn   { color: var(--warn);   border-color: rgba(251, 191, 36, 0.4);   background: rgba(251, 191, 36, 0.08); }
 .badge.bad    { color: var(--bad);    border-color: rgba(251, 113, 133, 0.4);  background: rgba(251, 113, 133, 0.08); }
+
+/* ---------- Mobile (≤760px) ---------- */
+
+@media (max-width: 760px) {
+  .page { padding: 10px 10px 14px; gap: 10px; }
+
+  .topbar { flex-wrap: wrap; gap: 10px; padding: 10px 14px; }
+  .topbar .brand p { display: none; }
+  .user span { display: none; }
+  .live .label { display: none; }
+
+  .kpis { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .kpi { padding: 10px 12px; }
+  .kpi .value { font-size: 20px; }
+  .kpi:first-child { grid-column: 1 / -1; }
+
+  .toolbar { flex-wrap: wrap; padding: 10px 12px; }
+  .toolbar input[type='search'] { flex-basis: 100%; }
+  .toolbar .count { margin-left: auto; }
+
+  /* Table: keep tracking #, status, route, progress — hide customer/carrier/weight/ETA */
+  .row { grid-template-columns: 88px 92px 1.2fr 92px; gap: 8px; padding: 0 10px; }
+  .row > span:nth-child(4),
+  .row > span:nth-child(5),
+  .row > span:nth-child(6),
+  .row > span:nth-child(7) { display: none; }
+  .badge { padding: 3px 7px; font-size: 10px; }
+  .route .arrow { margin: 0 2px; }
+  .progress .pct { display: none; }
+}
