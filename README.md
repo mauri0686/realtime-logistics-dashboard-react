@@ -1,11 +1,16 @@
 # ShipTrack Ops — Realtime Logistics Dashboard (React 19 + .NET 8)
 
+[![CI](https://github.com/mauri0686/realtime-logistics-dashboard-react/actions/workflows/ci.yml/badge.svg)](https://github.com/mauri0686/realtime-logistics-dashboard-react/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A full‑stack, real‑time operations dashboard: a **.NET 8** backend streams live updates for
 **5,000 shipments** over **SignalR (WebSocket)** to a **React 19** control‑tower UI that stays
 smooth by rendering only what's visible.
 
 > Sister project: the same backend with an **Angular 18** front‑end →
 > [`realtime-logistics-dashboard-angular`](https://github.com/mauri0686/realtime-logistics-dashboard-angular)
+
+
+> 🧭 **New to the project?** Read the [plain-language guide](docs/CLIENT-GUIDE.md) — no engineering background needed.
 
 ![Dashboard](docs/screenshot-dashboard.png)
 
