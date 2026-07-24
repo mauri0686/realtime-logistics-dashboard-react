@@ -55,6 +55,16 @@ export function LoginPage() {
           </div>
         </div>
 
+        <p className="pitch">
+          A live <b>control tower</b> for a parcel-delivery network: <b>5,000 shipments</b>{' '}
+          streaming into one dashboard, updating every second.
+        </p>
+        <div className="chips">
+          <span className="chip">⚡ 350 updates/sec</span>
+          <span className="chip">🔌 WebSocket push</span>
+          <span className="chip">🧊 Virtual scroll</span>
+        </div>
+
         <label htmlFor="username">Operator</label>
         <input
           id="username"
